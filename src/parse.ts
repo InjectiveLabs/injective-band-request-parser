@@ -78,6 +78,14 @@ import { Obi } from "@bandprotocol/obi.js";
       return false;
     }
   );
+  const shortFilteredRequestsThatDeviate = filteredRequestsThatDeviate.map(
+    (request: any) => {
+      return {
+        id: request.id,
+        result: request.result.ratesWithSymbols,
+      };
+    }
+  );
 
   fs.writeFileSync(
     "all-requests.json",
@@ -96,6 +104,17 @@ import { Obi } from "@bandprotocol/obi.js";
       {
         ...oracleRequests,
         requests: filteredRequestsThatDeviate,
+      },
+      null,
+      2
+    )
+  );
+  fs.writeFileSync(
+    "bad-requests-summary.json",
+    JSON.stringify(
+      {
+        ...oracleRequests,
+        requests: shortFilteredRequestsThatDeviate,
       },
       null,
       2
