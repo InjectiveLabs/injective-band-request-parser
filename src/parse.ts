@@ -9,6 +9,7 @@ import { Obi } from "@bandprotocol/obi.js";
   const BTC_CAP = [60000, 40000];
   const ETH_CAP = [4000, 3500];
   const BNB_CAP = [600, 450];
+  const USDT_CAP = [1.5, 0.5];
 
   const obi = new Obi(`{
     symbols: [string],
@@ -46,10 +47,11 @@ import { Obi } from "@bandprotocol/obi.js";
   );
   const filteredRequestsThatDeviate = filteredRequestsForLivePerpetuals.filter(
     (request: any) => {
-      const [btcPrice, ethPrice, , , bnbPrice] = request.result.rates;
+      const [btcPrice, ethPrice, usdtPrice, , bnbPrice] = request.result.rates;
       const btcPriceToBN = new BigNumber(btcPrice);
       const ethPriceToBN = new BigNumber(ethPrice);
       const bnbPriceToBN = new BigNumber(bnbPrice);
+      const usdtPriceToBN = new BigNumber(usdtPrice);
 
       if (btcPriceToBN.gt(BTC_CAP[0]) || btcPriceToBN.lt(BTC_CAP[1])) {
         return true;
@@ -60,6 +62,10 @@ import { Obi } from "@bandprotocol/obi.js";
       }
 
       if (bnbPriceToBN.gt(BNB_CAP[0]) || bnbPriceToBN.lt(BNB_CAP[1])) {
+        return true;
+      }
+
+      if (usdtPriceToBN.gt(USDT_CAP[0]) || usdtPriceToBN.lt(USDT_CAP[1])) {
         return true;
       }
 

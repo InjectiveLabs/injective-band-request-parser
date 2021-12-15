@@ -11,12 +11,16 @@
   ],
   "scripts": {
     "parse": "ts-node src/parse.ts",
+    "parse-txs": "ts-node src/parse-txs.ts",
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
     "@apollo/client": "^3.5.5",
+    "@bandprotocol/bandchain.js": "^2.0.2",
     "@bandprotocol/obi.js": "^1.0.7",
+    "@injectivelabs/utils": "^0.0.41",
     "bignumber.js": "^9.0.2",
+    "cosmjs-types": "^0.4.0",
     "cross-fetch": "^3.1.4",
     "graphql": "^16.1.0"
   },
