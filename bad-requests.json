@@ -1,0 +1,12 @@
+{
+  "id": 23,
+  "codehash": "f534182a1216f88a512df9696fca36612d11d028173f0d11296cec2a45f8edfa",
+  "description": "",
+  "name": "Band 🤝 Injective Standard Dataset (Crypto)",
+  "owner": "band1nm9ux8rmdpm20v90znav3hjrvxrvfachu7ym3d",
+  "schema": "{symbols:[string],multiplier:u64}/{rates:[u64]}",
+  "source_code_url": "https://ipfs.io/ipfs/QmbtaHkq5Maww4Fxg7HEFVZjERYJE7s7xnXxeef9X9hpoJ",
+  "transaction_id": 23798609,
+  "requests": [],
+  "__typename": "oracle_scripts"
+}
