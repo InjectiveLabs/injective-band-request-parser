@@ -32,6 +32,12 @@ import { Obi } from "@bandprotocol/obi.js";
 
           return number.div(1e9).toString();
         }),
+        ratesWithSymbols: result.rates.map((rate: any, index: number) => {
+          const number = new BigNumber(rate.toString());
+          const symbol = calldata.symbols[index];
+
+          return `${symbol}: ${number.div(1e9).toFixed()}`;
+        }),
       },
       calldata: {
         ...calldata,
