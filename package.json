@@ -12,6 +12,7 @@
   "scripts": {
     "parse": "ts-node src/parse.ts",
     "parse-txs": "ts-node src/parse-txs.ts",
+    "parse-tx": "ts-node src/parse-tx.ts",
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
