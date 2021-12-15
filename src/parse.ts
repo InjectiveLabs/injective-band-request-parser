@@ -5,7 +5,7 @@ import fs from "fs";
 import { Obi } from "@bandprotocol/obi.js";
 
 (async () => {
-  const oracleRequests = await apolloConsumer.fetchOracleRequests();
+  const oracleRequests = await apolloConsumer.fetchOracleRequestsByPk();
   const BTC_CAP = [60000, 40000];
   const ETH_CAP = [4000, 3500];
   const BNB_CAP = [600, 450];

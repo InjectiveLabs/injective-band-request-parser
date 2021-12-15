@@ -12,6 +12,36 @@ const BAND_GRAPH_URL = "https://graphql-lm.bandchain.org/v1/graphql";
 
 const ORACLE_REQUESTS = gql`
   query OracleRequests {
+    oracle_script_requests(where: { oracle_script_id: { _eq: ${ORACLE_SCRIPT_ID} } }) {
+      oracle_script_id
+      oracle_script {
+        id
+        name
+        description
+        codehash
+        owner
+        schema
+        source_code_url
+        transaction_id
+        requests(where: { request_time: { _gte: ${REQUEST_TIME_UNIX} } }) {
+          result
+          sender
+          total_fees
+          resolve_status
+          resolve_time
+          resolve_height
+          request_time
+          reason
+          is_ibc
+          calldata
+        }
+      }
+    }
+  }
+`;
+
+const ORACLE_REQUESTS_BY_PK = gql`
+  query OracleRequests {
     oracle_script_requests_by_pk(oracle_script_id: ${ORACLE_SCRIPT_ID}) {
       oracle_script {
         id
@@ -59,6 +89,20 @@ class ApolloConsumer {
   async fetchOracleRequests() {
     const response = await this.apolloClient.query({
       query: ORACLE_REQUESTS,
+    });
+
+    if (response.errors && response.errors.length > 0) {
+      throw new Error(response.errors[0].message);
+    }
+
+    return response.data.oracle_script_requests
+      ? response.data.oracle_script_requests[0].oracle_script
+      : {};
+  }
+
+  async fetchOracleRequestsByPk() {
+    const response = await this.apolloClient.query({
+      query: ORACLE_REQUESTS_BY_PK,
     });
 
     if (response.errors && response.errors.length > 0) {
